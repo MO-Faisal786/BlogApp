@@ -8,11 +8,13 @@ function Home() {
     const userStatus = useSelector(state => state.auth.status)    
 
     useEffect(() => {
-        appwriteService.getPosts().then((posts) => {
-            if (posts) {
-                setPosts(posts.documents)
-            }
-        })
+        if (userStatus) {  
+            appwriteService.getPosts().then((posts) => {
+                if (posts) {
+                    setPosts(posts.documents)
+                }
+            })
+        }
     }, [])
   
     if (posts.length === 0) {
@@ -22,7 +24,7 @@ function Home() {
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-2xl font-bold hover:text-gray-500">
-                                {!userStatus?"Login to read posts":`Welcome back!`}
+                                {!userStatus?"Login to read posts":`Welcome!`}
                             </h1>
                         </div>
                     </div>
