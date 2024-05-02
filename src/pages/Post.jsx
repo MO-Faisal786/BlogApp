@@ -10,9 +10,7 @@ export default function Post() {
     const { slug } = useParams();
     const navigate = useNavigate();
 
-    const userData = useSelector((state) => state.auth.userData);
-
-    const isAuthor = post && userData ? post.userid === userData.$id : false;
+    const userData = useSelector((state) => state.auth.userData);   
 
     useEffect(() => {
         if (slug) {
@@ -31,6 +29,7 @@ export default function Post() {
             }
         });
     };
+    const isAuthor = post && userData ? post.userid === userData.$id : false;
 
     return post ? (
         <div className="py-8">
